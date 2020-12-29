@@ -1,0 +1,57 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div style="padding-top: 20%;">
+                <h2 class="text-center text-white">Update Profile</h2>
+                <hr class="w-75 border-white">
+                <div></div>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert bg-danger text-white alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-inline" style="margin-top: 5%;">
+                        <label for="id_username" class="mr-3 text-white">{{ form.username.label }}</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-4"></div>
+                    <div class="form-inline" style="margin-top: 10%!important;">
+                        <label for="id_tag" class="mr-5 text-white">{{ form.tag.label }}</label>
+                        {{ form.tag }}
+                    </div>
+                    <button class="btn btn-outline-light w-100 mt-5" type="submit">Submit <i
+                            class="far fa-paper-plane"></i></button>
+                </form>
+                <a href="{% url 'friends:homepage' %}" class="text-white-50 font-weight-bold float-right">Homepage <i
+                        class="fas fa-long-arrow-alt-right"></i></a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div style="margin-top: 23%">
+                <div class="card bg-secondary text-white-50" style="opacity: .7">
+                    <div class="card-body">
+                        <img src="{% static 'shared/img/discord-avatar.png' %}" alt="Discord Avatar"
+                            class="rounded-circle card-img w-25 h-25 d-block mx-auto">
+                        <h1 class="text-white h1 text-center">{{ friend.username }}#{{ friend.tag }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<small class="fixed-bottom text-white-50">Copyright © 2020 - LokotamaTheMastermind</small>
+
+{% endblock content %}
