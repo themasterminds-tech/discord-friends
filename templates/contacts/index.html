@@ -2,128 +2,131 @@
 {% load static %}
 
 {% block content %}
-
+<!-- HOMEPAGE - Main -->
 {% if request.user.is_authenticated %}
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <div style="margin-top: 20%;">
-                <h2 class="text-center text-white">Add Discord Friends</h2>
-                <hr class="w-75 border-white">
-                <div></div>
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert bg-danger text-white alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {% endfor %}
-                {% endif %}
-                <form action="/" method="post">
-                    {% csrf_token %}
-                    <div class="form-inline mt-3">
-                        <label for="id_user_id" class="mr-5 text-white">{{ form.user_id.label }}</label>
-                        {{ form.user_id }}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div style="margin-top: 20%;">
+                    <h2 class="text-center text-white">Add Discord Friends</h2>
+                    <hr class="w-75 border-white">
+                    <div></div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert bg-danger text-white alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="mb-4"></div>
-                    <div class="form-inline mt-3">
-                        <label for="id_username" class="mr-3 text-white">{{ form.username.label }}</label>
-                        {{ form.username }}
-                    </div>
-                    <div class="mb-4"></div>
-                    <div class="form-inline mt-3">
-                        <label for="id_tag" class="mr-5 text-white">{{ form.tag.label }}</label>
-                        {{ form.tag }}
-                    </div>
-                    <button class="btn btn-outline-light w-100 mt-3" type="submit">Submit <i
-                            class="far fa-paper-plane"></i></button>
-                </form>
-                <span class="text-white-50">
-                    Download the <a href="https://github.com/LokotamaTheMastermind/discord-friends.git"
-                        class="text-white-50 font-weight-bold">source code</a>
-                </span>
-                <a href="{% url 'logout' %}" class="text-white-50 font-weight-bold float-right">Logout <i
-                        class="fas fa-long-arrow-alt-right"></i></a>
-            </div>
-        </div>
-        <div class="col-6">
-            <div style="margin-top: 23%;">
-                {% if has_friends %}
-                <div class="card bg-secondary text-white-50">
-                    <img class="card-img-top" src="{% static 'shared/img/wumpus-happy.png' %}" alt="Happ Wumpus">
-                    <div class="card-img-overlay">
-                        <h3 class="text-center">Friends List</h3>
-                        <hr class="w-75 border-light">
-
-                        <div class="container">
-                            {% for friend in contacts %}
-                            <div class="mb-2">
-                                {{ friend }}#{{ friend.tag }}
-                                <span class="float-right">
-                                    <a class="btn btn-light btn-sm" href="{% url 'friends:view' friend.id %}">View <i
-                                            class="far fa-eye"></i></a>
-                                    <span class="mr-1"></span>
-                                    <a class="btn btn-primary btn-sm" href="{% url 'friends:update' friend.id %}">Update
-                                        <i class="far fa-edit"></i></a>
-                                    <span class="mr-1"></span>
-                                    <a class="btn btn-danger btn-sm" href="{% url 'friends:delete' friend.id %}">Remove
-                                        <i class="fas fa-trash"></i></a>
-                                </span>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <small class="fixed-bottom">Copyright © 2020 - LokotamaTheMastermind</small>
-                    </div>
-                </div>
-                {% if contacts.has_other_pages %}
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mt-2">
-                    {% if contacts.has_previous %}
-                    <li class="page-item"><a href="?page={{ contacts.previous_page_number }}"
-                            class="page-link">&laquo;</a></li>
-                    {% else %}
-                    <li class="disabled page-item page-link"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in contacts.paginator.page_range %}
-                    {% if contacts.number == i %}
-                    <li class="active page-item page-link cursor"><span>{{ i }} <span
-                                class="sr-only">(current)</span></span>
-                    </li>
-                    {% else %}
-                    <li class="page-item cursor"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
-                    {% endif %}
                     {% endfor %}
-                    {% if contacts.has_next %}
-                    <li class="page-item cursor"><a href="?page={{ contacts.next_page_number }}"
-                            class="page-link">&raquo;</a>
-                    </li>
-                    {% else %}
-                    <li class="disabled page-item page-link default-cursor"><span>&raquo;</span></li>
                     {% endif %}
-                </ul>
-                {% endif %}
-                {% else %}
-                <div class="card bg-secondary text-white-50">
-                    <img class="card-img-top" src="{% static 'shared/img/wumpus.png' %}" alt="Wumpus">
-                    <div class="card-img-overlay">
-                        <h4 class="text-center" style="margin-top: 20%;">Sorry Wumpus you don't have any friends
-                            yet</h4>
-                    </div>
+                    <form action="/" method="post">
+                        {% csrf_token %}
+                        <div class="form-inline mt-3">
+                            <label for="id_user_id" class="mr-5 text-white">{{ form.user_id.label }}</label>
+                            {{ form.user_id }}
+                        </div>
+                        <div class="mb-4"></div>
+                        <div class="form-inline mt-3">
+                            <label for="id_username" class="mr-3 text-white">{{ form.username.label }}</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-4"></div>
+                        <div class="form-inline mt-3">
+                            <label for="id_tag" class="mr-5 text-white">{{ form.tag.label }}</label>
+                            {{ form.tag }}
+                        </div>
+                        <button class="btn btn-outline-light w-100 mt-3" type="submit">Submit <i
+                                class="far fa-paper-plane"></i></button>
+                    </form>
+                    <span class="text-white-50">
+                        Download the <a href="https://github.com/LokotamaTheMastermind/discord-friends.git"
+                            class="text-white-50 font-weight-bold">source code</a>
+                    </span>
+                    <a href="{% url 'logout' %}" class="text-white-50 font-weight-bold float-right">Logout <i
+                            class="fas fa-long-arrow-alt-right"></i></a>
                 </div>
-                <small class="fixed-bottom text-white-50">Copyright © 2020 - LokotamaTheMastermind</small>
-                {% endif %}
+            </div>
+            <div class="col-6">
+                <div style="margin-top: 23%;">
+                    {% if has_friends %}
+                    <div class="card bg-secondary text-white-50">
+                        <img class="card-img-top" src="{% static 'shared/img/wumpus-happy.png' %}" alt="Happ Wumpus">
+                        <div class="card-img-overlay">
+                            <h3 class="text-center">Friends List</h3>
+                            <hr class="w-75 border-light">
+
+                            <div class="container">
+                                {% for friend in contacts %}
+                                <div class="mb-2">
+                                    {{ friend }}#{{ friend.tag }}
+                                    <span class="float-right">
+                                        <a class="btn btn-light btn-sm" href="{% url 'friends:view' friend.id %}">View
+                                            <i class="far fa-eye"></i></a>
+                                        <span class="mr-1"></span>
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{% url 'friends:update' friend.id %}">Update
+                                            <i class="far fa-edit"></i></a>
+                                        <span class="mr-1"></span>
+                                        <a class="btn btn-danger btn-sm"
+                                            href="{% url 'friends:delete' friend.id %}">Remove
+                                            <i class="fas fa-trash"></i></a>
+                                    </span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <small class="fixed-bottom">Copyright © 2020 - LokotamaTheMastermind</small>
+                        </div>
+                    </div>
+                    {% if contacts.has_other_pages %}
+                    <!-- Pagination -->
+                    <ul class="pagination justify-content-center mt-2">
+                        {% if contacts.has_previous %}
+                        <li class="page-item"><a href="?page={{ contacts.previous_page_number }}"
+                                class="page-link">&laquo;</a></li>
+                        {% else %}
+                        <li class="disabled page-item page-link"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in contacts.paginator.page_range %}
+                        {% if contacts.number == i %}
+                        <li class="active page-item page-link"><span>{{ i }} <span
+                                    class="sr-only">(current)</span></span>
+                        </li>
+                        {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if contacts.has_next %}
+                        <li class="page-item"><a href="?page={{ contacts.next_page_number }}"
+                                class="page-link">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="disabled page-item page-link default"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                    {% else %}
+                    <div class="card bg-secondary text-white-50">
+                        <img class="card-img-top" src="{% static 'shared/img/wumpus.png' %}" alt="Wumpus">
+                        <div class="card-img-overlay">
+                            <h4 class="text-center" style="margin-top: 20%;">Sorry Wumpus you don't have any friends
+                                yet</h4>
+                        </div>
+                    </div>
+                    <small class="fixed-bottom text-white-50">Copyright © 2020 - LokotamaTheMastermind</small>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-{% else %}
-<div class="container text-white-50" style="margin-top: 20%;">
-    <h3 class="text-center">Not logged in</h3>
-    <p class="text-center h5">Try to logon through this <a href="/admin/" class="font-weight-bold">link</a></p>
-</div>
-{% endif %}
-
+    {% else %}
+    <div class="container text-white-50" style="margin-top: 20%;">
+        <h3 class="text-center">Not logged in</h3>
+        <p class="text-center h5">Try to logon through this <a href="/admin/" class="font-weight-bold">link</a></p>
+    </div>
+    {% endif %}
+</section>
 {% endblock content %}
