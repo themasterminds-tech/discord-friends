@@ -2,6 +2,8 @@
 
 # Discord Friends
 
+<div align=center><a href="https://www.producthunt.com/posts/discord-friends?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-discord-friends" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=279659&theme=light" alt="Discord Friends - #discordfriends #discord-friends | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a></div>
+
 <br>
 
 ## Description
