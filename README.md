@@ -1,4 +1,4 @@
-<div align=center><img align="right" width=50 height=50 src="pictures/discord.ico"></span></div>
+<div align=center><img align="right" width=100 height=100 src="pictures/discord.ico"></span></div>
 
 # Discord Friends
 
@@ -121,3 +121,10 @@ View the license at [LICENSE](LICENSE)
 
 ___
 To contributing to the project read the instructions at [CONTRIBUTING](CONTRIBUTING.md)
+
+<br>
+
+## Authors
+
+___
+The current project authors are listed in [AUTHORS](AUTHORS.md)
