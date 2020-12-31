@@ -56,12 +56,8 @@ To configure the database if you wanna use the default replace the following lin
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'discord-friends',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 ```
@@ -71,13 +67,19 @@ to this
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'database_name',
+        'USER': 'database_user',
+        'PASSWORD': 'database_password',
+        'HOST': 'database_host',
+        'PORT': 'database_port',
     }
 }
 ```
 
-If you wanna leave the database as it is then replace information provided already with yours
+If you leave the configuration the way it is you go with default which doesn't need installation
+
+If you change configuration available then you have to fill in with your personal information for postgresql database
 
 <br>
 
