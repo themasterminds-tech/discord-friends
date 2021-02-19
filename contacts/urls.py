@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, delete, update, view
+from .views import *
 
 app_name = 'friends'
 

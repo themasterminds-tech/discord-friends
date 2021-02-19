@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Friends
 from .forms import FriendForm
 from django.http import HttpResponseRedirect
