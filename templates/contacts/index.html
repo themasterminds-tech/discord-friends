@@ -63,14 +63,12 @@
                                 <div class="mb-2" id="data-row-${i}">
                                     {{ friend.username }}#{{ friend.tag }}
                                     <span class="float-right">
-                                        <a class="btn btn-success btn-sm" href="{% url 'friends:view' friend.id %}">View
-                                            <i class="far fa-eye"></i></a><span class="mr-1"></span>
+                                        <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                                            data-target="#friend-modal-{{ friend.id }}"><i class="fa fa-expand"></i>
+                                            Expand</button>
                                         <a class="btn btn-primary btn-sm"
                                             href="{% url 'friends:update' friend.id %}">Update <i
                                                 class="far fa-edit"></i></a><span class="mr-1"></span>
-                                        <a class="btn btn-danger btn-sm"
-                                            href="{% url 'friends:delete' friend.id %}">Remove <i
-                                                class="fas fa-trash"></i></a>
                                     </span>
                                 </div>
                                 {% endfor %}
@@ -120,6 +118,34 @@
         </div>
     </div>
 </section>
+
+{% if has_friends %}
+<!-- MODALS -->
+{% for friend in contacts %}
+<div class="modal fade" id="friend-modal-{{ friend.id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-secondary">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        style="color: white;">&times;</span></button>
+            </div>
+
+            <div class="modal-body">
+                <img src="{% static 'shared/img/discord-avatar.png' %}" alt="Discord Avatar"
+                    class="rounded-circle card-img w-auto h-auto d-block mx-auto">
+                <h4 class="text-white h4 text-center mt-2">{{ friend.username }}#{{ friend.tag }}</h4>
+                <h5 class="text-white h5 text-center mt-2">User ID - {{ friend.user_id }}</h5>
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-danger btn-sm" href="{% url 'friends:delete' friend.id %}"><i class="fa fa-trash"></i>
+                    Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
 
 {% else %}
 <div class="container text-white-50" style="margin-top: 20%;">

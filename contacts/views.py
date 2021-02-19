@@ -72,13 +72,3 @@ def update(request, id):
         'friend': friend
     }
     return render(request, 'contacts/update.html', context)
-
-
-# VIEW FRIEND view
-@login_required
-def view(request, id):
-    friend = Friends.objects.get(id=id)
-    context = {
-        'friend': friend
-    }
-    return render(request, 'contacts/view.html', context)

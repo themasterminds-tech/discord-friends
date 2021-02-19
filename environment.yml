@@ -1,39 +1,46 @@
-name: discord-friends
-channels:
-  - anaconda
-  - conda-forge
-  - defaults
-dependencies:
-  - asgiref=3.3.1=pyhd8ed1ab_0
-  - astroid=2.4.2=py37hc8dfbb8_1
-  - ca-certificates=2020.12.5=h5b45459_0
-  - certifi=2020.12.5=py37h03978a9_1
-  - colorama=0.4.4=pyh9f0ad1d_0
-  - django=3.1.2=py_0
-  - djangorestframework=3.12.2=pyhd8ed1ab_0
-  - isort=5.7.0=pyhd8ed1ab_0
-  - krb5=1.17.2=hbae68bd_0
-  - lazy-object-proxy=1.4.3=py37h4ab8f01_2
-  - libpq=12.3=h4f54205_3
-  - mccabe=0.6.1=py_1
-  - openssl=1.1.1i=h8ffe710_0
-  - pip=20.3.3=pyhd8ed1ab_0
-  - psycopg2=2.8.6=py37hd8e9650_1
-  - pylint=2.6.0=py37hc8dfbb8_1
-  - python=3.7.9=h7840368_0_cpython
-  - python_abi=3.7=1_cp37m
-  - pytz=2020.5=pyhd8ed1ab_0
-  - setuptools=49.6.0=py37hf50a25e_2
-  - six=1.15.0=pyh9f0ad1d_0
-  - sqlite=3.34.0=h8ffe710_0
-  - sqlparse=0.4.1=pyh9f0ad1d_0
-  - tk=8.6.10=h8ffe710_1
-  - toml=0.10.2=pyhd8ed1ab_0
-  - typed-ast=1.4.2=py37hcc03f2d_0
-  - vc=14.2=hb210afc_2
-  - vs2015_runtime=14.28.29325=h5e1d092_0
-  - wheel=0.36.2=pyhd3deb0d_0
-  - wincertstore=0.2=py37hc8dfbb8_1005
-  - wrapt=1.11.2=py37h4ab8f01_1
-  - zlib=1.2.11=vc14h1cdd9ab_1
-prefix: D:\ProgramData\Anaconda3\envs\discord-friends
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+asgiref=3.3.1=pyhd8ed1ab_0
+astroid=2.4.2=py37hc8dfbb8_1
+brotlipy=0.7.0=py37h0013d47_1001
+ca-certificates=2020.12.5=h5b45459_0
+certifi=2020.12.5=py37h03978a9_1
+cffi=1.14.4=py37hd8e9650_1
+chardet=4.0.0=py37h03978a9_1
+colorama=0.4.4=pyh9f0ad1d_0
+cryptography=3.3.1=py37hd8e9650_1
+django=3.1.2=py_0
+djangorestframework=3.12.2=pyhd8ed1ab_0
+idna=2.10=pyh9f0ad1d_0
+isort=5.7.0=pyhd8ed1ab_0
+krb5=1.17.2=hbae68bd_0
+lazy-object-proxy=1.4.3=py37h4ab8f01_2
+libpq=12.3=h4f54205_3
+mccabe=0.6.1=py_1
+openssl=1.1.1i=h8ffe710_0
+pip=20.3.3=pyhd8ed1ab_0
+psycopg2=2.8.6=py37hd8e9650_1
+pycparser=2.20=pyh9f0ad1d_2
+pylint=2.6.0=py37hc8dfbb8_1
+pyopenssl=20.0.1=pyhd8ed1ab_0
+pysocks=1.7.1=py37h03978a9_3
+python=3.7.9=h7840368_0_cpython
+python_abi=3.7=1_cp37m
+pytz=2020.5=pyhd8ed1ab_0
+requests=2.25.1=pyhd3deb0d_0
+setuptools=49.6.0=py37h03978a9_3
+six=1.15.0=pyh9f0ad1d_0
+sqlite=3.34.0=h8ffe710_0
+sqlparse=0.4.1=pyh9f0ad1d_0
+tk=8.6.10=h8ffe710_1
+toml=0.10.2=pyhd8ed1ab_0
+typed-ast=1.4.2=py37hcc03f2d_0
+urllib3=1.26.2=pyhd8ed1ab_0
+vc=14.2=hb210afc_2
+vs2015_runtime=14.28.29325=h5e1d092_0
+wheel=0.36.2=pyhd3deb0d_0
+win_inet_pton=1.1.0=py37h03978a9_2
+wincertstore=0.2=py37h03978a9_1006
+wrapt=1.11.2=py37h4ab8f01_1
+zlib=1.2.11=vc14h1cdd9ab_1
