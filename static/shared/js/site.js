@@ -1,3 +1,6 @@
+/* FUNCTION TO GET COOKIE */
+// Gets the cookie specified in the params
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -14,6 +17,11 @@ function getCookie(name) {
     return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
+
+
+/* FUNCTION FOR CUSTOM DELETE */
+// Confirm dialog and verification processes before actual delete operation occurs
+
 function deleteMethod() {
     var friendName = document.getElementById('friendName').value;
     var friendID = document.getElementById('friendID').value;
@@ -23,8 +31,6 @@ function deleteMethod() {
         var providedUsername = prompt('Please enter the username of your discord friend');
         var providedTag = prompt('Please enter the tag of your discord friend');
         if (providedUsername == friendName && providedTag == friendTag) {
-            console.log('This is working');
-            console.log(csrftoken);
             fetch('/delete/' + friendID, {
                 credentials: 'include',
                 headers: {
