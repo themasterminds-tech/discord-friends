@@ -1,10 +1,11 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from .models import Friends
 from .forms import FriendForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
 
 
 # INDEX view
@@ -44,6 +45,7 @@ def index(request):
 
 # DELETE view
 @login_required
+@api_view(['DELETE'])
 def delete(request, id):
     friend = Friends.objects.get(id=id)
 

@@ -138,8 +138,12 @@
             </div>
 
             <div class="modal-footer">
-                <a class="btn btn-danger btn-sm" href="{% url 'friends:delete' friend.id %}"><i class="fa fa-trash"></i>
-                    Delete</a>
+                <!-- <a class="btn btn-danger btn-sm" href="{% url 'friends:delete' friend.id %}"><i class="fa fa-trash"></i>
+                    Delete</a> -->
+                <input type="hidden" name="friendName" value="{{ friend.username }}" id="friendName">
+                <input type="hidden" name="friendID" value="{{ friend.id }}" id="friendID">
+                <input type="hidden" name="friendTag" value="{{ friend.tag }}" id="friendTag">
+                <button class="btn btn-danger btn-sm" onclick="deleteMethod()">Delete</button>
             </div>
         </div>
     </div>
