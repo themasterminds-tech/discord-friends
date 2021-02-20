@@ -55,7 +55,7 @@
                     <div class="card bg-secondary text-white-50">
                         <img class="card-img-top" src="{% static 'shared/img/wumpus-happy.png' %}" alt="Happ Wumpus">
                         <div class="card-img-overlay">
-                            <h3 class="text-center">Friends List</h3>
+                            <h3 class="text-center">Available Friends</h3>
                             <hr class="w-75 border-light">
 
                             <div class="container">
@@ -63,12 +63,12 @@
                                 <div class="mb-2" id="data-row-${i}">
                                     {{ friend.username }}#{{ friend.tag }}
                                     <span class="float-right">
-                                        <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
                                             data-target="#friend-modal-{{ friend.id }}"><i class="fa fa-expand"></i>
                                             Expand</button>
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{% url 'friends:update' friend.id %}">Update <i
-                                                class="far fa-edit"></i></a><span class="mr-1"></span>
+                                        <a class="btn btn-outline-light btn-sm"
+                                            href="{% url 'friends:update' friend.id %}"><i class="far fa-edit"></i>
+                                            Update</a><span class="mr-1"></span>
                                     </span>
                                 </div>
                                 {% endfor %}
