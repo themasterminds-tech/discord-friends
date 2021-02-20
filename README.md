@@ -38,7 +38,7 @@ ___
 2. Activate your virtualenv if you have any
 3. Change directory to `scripts/{op}` where `{op}` is your operating system. Then run the file `install_pip.bat` in cmd
 4. Wait tfor the project server to startup
-5. Then open browser in url `127.0.0.1`
+5. Then open browser in url `127.0.0.1:100`
 
 <br>
 
