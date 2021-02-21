@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Friends
 from .forms import FriendForm
@@ -6,6 +7,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
+from .databases import extract_postgresql
+import os
 
 
 # INDEX view
@@ -74,3 +77,9 @@ def update(request, id):
         'friend': friend
     }
     return render(request, 'contacts/update.html', context)
+
+
+@login_required
+def backup(request):
+    extract_postgresql()
+    return render(request, 'contacts/backup.html', context={})
