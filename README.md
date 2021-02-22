@@ -7,16 +7,15 @@
 ## Description
 
 ___
-Save discord friend information in case, so incase you lose your account you can easily backup what you saved!
+Backup discord friends incase of account loss
 
 ## Requirements
 
 ___
 
-1. `Python` >=3.5 or `Anaconda` (optional)
-2. pip modules (`django`)
-3. A discord account (with `developer options` enabled)
-4. PostgreSQL installed with database set up already (optional - best peformance)
+1. `Python` >=3.5 or `Anaconda`
+2. A discord account with (`developer options`)
+3. PostgreSQL installed with database set up already (optional - for best peformance)
 
 <br>
 
@@ -28,7 +27,7 @@ ___
 
 1. Clone this repository with command `git clone https://github.com/LokotamaTheMastermind/discord-friends.git`
 2. Enter the folder with anaconda enabled and in `base` virtual environment
-3. Change the directory to `scripts/{op}`, where `{op}` is your operating system listed. Then after run the `install` script for that operating system
+3. Change the directory to `scripts/{op}`, where `{op}` is your operating system. Then after run the file starting with the prefix only `install`
 4. Wait for project server to startup
 5. Then open browser in url `127.0.0.1:100`
 
@@ -36,8 +35,8 @@ ___
 
 1. Clone this repository with command `git clone https://github.com/LokotamaTheMastermind/discord-friends.git`
 2. Activate your virtualenv if you have any
-3. Change directory to `scripts/{op}` where `{op}` is your operating system. Then run the file `install_pip.bat` in cmd
-4. Wait tfor the project server to startup
+3. Change directory to `scripts/{op}` where `{op}` is your operating system. Then run the file starting with the prefix only `install_pip` in cmd
+4. Wait for the project server to startup
 5. Then open browser in url `127.0.0.1:100`
 
 <br>
@@ -51,7 +50,8 @@ ___
 ### Database
 
 ___
-To configure the database if you wanna use the default replace the following lines in the `settings.py` in the `discord-friends` folder
+
+### Default database
 
 ```python
 DATABASES = {
@@ -62,7 +62,9 @@ DATABASES = {
 }
 ```
 
-to this
+### Configure database (postgresql)
+
+Use only if you have postgresql installed and know how to use it
 
 ```python
 DATABASES = {
@@ -76,10 +78,6 @@ DATABASES = {
     }
 }
 ```
-
-If you leave the configuration the way it is you go with default which doesn't need installation
-
-If you change configuration available then you have to fill in with your personal information for postgresql database
 
 <br>
 
@@ -102,13 +100,12 @@ ___
 
 <br>
 
-## Future Plans
+## TODOS
 
 ___
 
-1. Make process automatic with access to discord account to get information. It will work everytime you run the project
-2. Make a restore button to recover friend stored incase of account loss
-3. Compiled project for those without Python
+1. Implement what was stated in issue #2
+2. Compiled project for those without Python
 
 <br>
 
