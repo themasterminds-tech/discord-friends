@@ -8,7 +8,7 @@
     <div class="container centered">
         <h6 class="lead text-center">The download should start soon. If it doesn't start click
             this
-            <a href="{% static 'discord_friends.txt' %}" download>link</a>
+            <a href="{% static 'discord_friends.txt' %}" download id="downloadLink">link</a>
         </h6>
         <div class="lds-ellipsis" style="margin-left: 45%;">
             <div></div>
@@ -18,7 +18,8 @@
         </div>
     </div>
 
-    <script src="{% static 'shared/js/bundle.js' %}"></script>
+    <script src="{% static 'shared/js/backup.js' %}"></script>
+
 </body>
 
 {% endblock content %}

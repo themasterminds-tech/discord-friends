@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
 from .databases import extract_postgresql
-import os
 
 
 # INDEX view
