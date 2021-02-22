@@ -142,7 +142,8 @@
                 <input type="hidden" name="friendName" value="{{ friend.username }}" id="friendName">
                 <input type="hidden" name="friendID" value="{{ friend.id }}" id="friendID">
                 <input type="hidden" name="friendTag" value="{{ friend.tag }}" id="friendTag">
-                <button class="btn btn-danger btn-sm" onclick="deleteMethod()">Delete</button>
+                <a href="{% url 'friends:delete' friend.id %}" class="btn btn-danger btn-sm"
+                    onclick="confirm('Are you sure you want to permanently delete your saved discord friend?');">Delete</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,3 @@
-from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Friends
 from .forms import FriendForm
@@ -47,7 +46,6 @@ def index(request):
 
 # DELETE view
 @login_required
-@api_view(['DELETE'])
 def delete(request, id):
     friend = Friends.objects.get(id=id)
 

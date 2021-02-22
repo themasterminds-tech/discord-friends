@@ -18,7 +18,18 @@
         </div>
     </div>
 
-    <script src="{% static 'shared/js/backup.js' %}"></script>
+    <script type="text/javascript">
+        /* FUNCTION FOR AUTOMATIC DELETE */
+        // Automatic download on page load
+
+        function automaticDownload() {
+            var link = document.getElementById('downloadLink');
+
+            link.download = 'download';
+
+            link.click();
+        }
+    </script>
 
 </body>
 
