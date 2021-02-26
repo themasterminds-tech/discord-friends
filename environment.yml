@@ -1,7 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: win-64
-asgiref=3.3.1=pyhd8ed1ab_0
+asgiref=3.2.10=pypi_0
 astroid=2.4.2=py37hc8dfbb8_1
 brotlipy=0.7.0=py37h0013d47_1001
 ca-certificates=2020.12.5=h5b45459_0
@@ -11,6 +11,8 @@ chardet=4.0.0=py37h03978a9_1
 colorama=0.4.4=pyh9f0ad1d_0
 cryptography=3.3.1=py37hd8e9650_1
 django=3.1.2=py_0
+django-pwa=1.0.10=pypi_0
+django-sslserver=0.22=pypi_0
 djangorestframework=3.12.2=pyhd8ed1ab_0
 idna=2.10=pyh9f0ad1d_0
 isort=5.7.0=pyhd8ed1ab_0
@@ -26,6 +28,7 @@ pylint=2.6.0=py37hc8dfbb8_1
 pyopenssl=20.0.1=pyhd8ed1ab_0
 pysocks=1.7.1=py37h03978a9_3
 python=3.7.9=h7840368_0_cpython
+python-decouple=3.4=pypi_0
 python_abi=3.7=1_cp37m
 pytz=2020.5=pyhd8ed1ab_0
 requests=2.25.1=pyhd3deb0d_0

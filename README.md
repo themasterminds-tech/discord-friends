@@ -31,7 +31,7 @@ ___
 2. Enter the folder with anaconda enabled and in `base` virtual environment
 3. Change the directory to `scripts/{op}`, where `{op}` is your operating system. Then after run the file starting with the prefix only `install`
 4. Wait for project server to startup
-5. Then open browser in url `127.0.0.1:100`
+5. Then open browser in url `https://localhost:100`
 
 ## PIP
 
@@ -39,7 +39,7 @@ ___
 2. Activate your virtualenv if you have any
 3. Change directory to `scripts/{op}` where `{op}` is your operating system. Then run the file starting with the prefix only `install_pip` in cmd
 4. Wait for the project server to startup
-5. Then open browser in url `127.0.0.1:100`
+5. Then open browser in url `https://localhost:100`
 
 <br>
 
