@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +32,8 @@ INSTALLED_APPS = [
 
     # Project apps
     'contacts',
+    'pwa',
+    'sslserver'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +133,57 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'downloads')
 ]
+
+PWA_SERVICE_WORKER_PATH = os.path.join(
+    BASE_DIR, 'static/shared/js', 'worker.js')
+
+PWA_APP_NAME = 'Discord Friends'
+PWA_APP_DESCRIPTION = 'Backup your discord friends incase of account loss'
+PWA_APP_THEME_COLOR = '#7186CC'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': 'static/shared/img/web/discord-256x256.png',
+        'sizes': '256x256',
+        'type': 'image/png'
+    },
+    {
+        'src': 'static/shared/img/web/discord-128x128.png',
+        'sizes': '128x128',
+        'type': 'image/png'
+    },
+    {
+        'src': 'static/shared/img/web/discord-64x64.png',
+        'sizes': '64x64',
+        'type': 'image/png'
+    },
+    {
+        'src': 'static/shared/img/web/discord-48x48.png',
+        'sizes': '48x48',
+        'type': 'image/png'
+    },
+    {
+        'src': 'static/shared/img/web/discord-32x32.png',
+        'sizes': '32x32',
+        'type': 'image/png'
+    },
+    {
+        'src': 'static/shared/img/web/discord-16x16.png',
+        'sizes': '16x16',
+        'type': 'image/png'
+    },
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': 'static/shared/img/web/discord-256x256.png',
+        'sizes': '256x256',
+        'type': 'image/png'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'

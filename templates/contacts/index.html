@@ -4,6 +4,11 @@
 {% block content %}
 <!-- HOMEPAGE - Main -->
 {% if request.user.is_authenticated %}
+<section class="alert alert-success fixed-top">
+    <p class="lead text-center mt-0 mb-0">Successfully logged in as {{ request.user.username }}</p>
+</section>
+
+
 <section>
     <div class="container">
         <div class="row">
