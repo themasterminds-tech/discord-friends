@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&8vyt^0gemj6de^vo1^=ak$o2wy!%acmf*me4k$_$%1!8rw8i7'
+SECRET_KEY = config('SECRET_KEY', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'discord_friends.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'discord-friends',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'NAME': config('DB_NAME', cast=str),
+        'USER': config('DB_USER', cast=str),
+        'PASSWORD': config('DB_PASSWORD', cast=str),
+        'HOST': config('DB_HOST', cast=str),
+        'PORT': config('DB_PORT', cast=int),
     }
 }
 
@@ -137,15 +137,16 @@ STATICFILES_DIRS = [
 PWA_SERVICE_WORKER_PATH = os.path.join(
     BASE_DIR, 'static/shared/js', 'worker.js')
 
-PWA_APP_NAME = 'Discord Friends'
-PWA_APP_DESCRIPTION = 'Backup your discord friends incase of account loss'
-PWA_APP_THEME_COLOR = '#7186CC'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_NAME = config('PWA_APP_NAME', cast=str)
+PWA_APP_DESCRIPTION = config('PWA_APP_DESCRIPTION', cast=str)
+PWA_APP_THEME_COLOR = config('PWA_APP_THEME_COLOR', cast=str)
+PWA_APP_BACKGROUND_COLOR = config('PWA_APP_BACKGROUND_COLOR', cast=str)
+PWA_APP_DISPLAY = config('PWA_APP_DISPLAY', cast=str)
+PWA_APP_SCOPE = config('PWA_APP_SCOPE', cast=str)
+PWA_APP_ORIENTATION = config('PWA_APP_ORIENTATION', cast=str)
+PWA_APP_START_URL = config('PWA_APP_START_URL', cast=str)
+PWA_APP_STATUS_BAR_COLOR = config('PWA_APP_STATUS_BAR_COLOR', cast=str)
+
 PWA_APP_ICONS = [
     {
         'src': 'static/shared/img/web/discord-256x256.png',
@@ -178,6 +179,7 @@ PWA_APP_ICONS = [
         'type': 'image/png'
     },
 ]
+
 PWA_APP_SPLASH_SCREEN = [
     {
         'src': 'static/shared/img/web/discord-256x256.png',
@@ -185,5 +187,6 @@ PWA_APP_SPLASH_SCREEN = [
         'type': 'image/png'
     }
 ]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
+
+PWA_APP_DIR = config('PWA_APP_DIR', cast=str)
+PWA_APP_LANG = config('PWA_APP_LANG', cast=str)
