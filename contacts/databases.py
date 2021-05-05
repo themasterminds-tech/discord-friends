@@ -1,14 +1,17 @@
 import os
 from django.conf import settings
 
-project_root = os.getcwd()[:-8]
+# Dummy folder for download process to actual work!
+project_root = os.getcwd().replace('\\', '/')
 
 
-# Configuration for the postgresql database
+# Logic for the postgresql database
+
+
 def extract_postgresql():
     import psycopg2
 
-    # Database information
+    # Database information fetched from .env file
     DB_HOST = settings.DATABASES['default']['HOST']
     DB_NAME = settings.DATABASES['default']['NAME']
     DB_USER = settings.DATABASES['default']['USER']
@@ -28,8 +31,8 @@ def extract_postgresql():
     file_output_query = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(
         result_query)
 
-    # Output file path
-    output_file_location = f'{project_root}\\downloads\\discord_friends.txt'
+    # Copy content to output file path
+    output_file_location = f'{project_root}/downloads/discord_friends.txt'
 
     with open(output_file_location, 'w', encoding='utf-8') as output:
         db_cursor.copy_expert(file_output_query, output)

@@ -71,20 +71,15 @@ def update(request, id):
         if request.method == "POST":
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/')
                 messages.success(request, 'Updated the discord profile!')
+                return HttpResponseRedirect('/')
             else:
                 messages.error(request, 'Failed to update discord profile')
                 return HttpResponseRedirect('/')
 
-    context = {
-        'form': form,
-        'friend': friend
-    }
-    return render(request, 'contacts/update.html', context)
 
-
+# DOWNLOAD view
 @login_required
-def data_download(request):
+def download(request):
     extract_postgresql()
-    return render(request, 'contacts/backup.html', context={})
+    return render(request, 'contacts/download.html', context={})

@@ -7,11 +7,11 @@ from django.core import validators
 
 class FriendForm(forms.ModelForm):
     user_id = forms.CharField(required=True, label='Discord User ID', validators=[validators.MinLengthValidator(
-        18), validators.MaxLengthValidator(18)], widget=forms.TextInput(attrs={'class': 'form-control w-50'}))
+        18), validators.MaxLengthValidator(18)], widget=forms.TextInput(attrs={'class': 'form-control w-100'}))
     username = forms.CharField(
-        max_length=255, required=True, label='Discord Username', widget=forms.TextInput(attrs={'class': 'form-control w-50'}))
+        max_length=255, required=True, label='Discord Username', widget=forms.TextInput(attrs={'class': 'form-control w-100'}))
     tag = forms.CharField(required=True, label='Discord Tag', validators=[validators.MinLengthValidator(
-        4), validators.MaxLengthValidator(4)], widget=forms.TextInput(attrs={'class': 'form-control w-50'}))
+        4), validators.MaxLengthValidator(4)], widget=forms.TextInput(attrs={'class': 'form-control w-100'}))
 
     class Meta:
         model = Friends
