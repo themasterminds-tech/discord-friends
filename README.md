@@ -18,6 +18,7 @@ ___
 1. `Python` >=3.5 or `Anaconda`
 2. A discord account with (`developer options`)
 3. PostgreSQL installed with database set up already (optional - for best peformance)
+4. [`mkcert`](https://github.com/FiloSottile/mkcert) toolkit (for creating certificates for `https`)
 
 <br>
 

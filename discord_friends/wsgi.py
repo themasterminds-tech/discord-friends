@@ -1,4 +1,4 @@
-""" WSGI Configuration """
+# Project WSGI
 
 import os
 

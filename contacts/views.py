@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from .models import Friends
-from .forms import FriendForm
+from .forms import FriendForm, RegisterForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from rest_framework.decorators import api_view
 from .databases import extract_postgresql
 
 
 # INDEX view
 def index(request):
+
     friends = Friends.objects.all()
 
     paginator = Paginator(friends, 6)
@@ -23,9 +23,23 @@ def index(request):
     except EmptyPage:
         friends = paginator.page(paginator.num_pages)
 
-    form = FriendForm(request.POST or None)
+    # Register form
+    register_form = RegisterForm()
+
+    context = {
+        'contacts': friends,
+        'form_register': register_form,
+    }
 
     if request.user.is_authenticated:
+
+        form = FriendForm(request.POST or None)
+
+        has_friends = bool(friends)
+
+        context['form'] = form
+        context['has_friends'] = has_friends
+
         if request.method == "POST":
             if form.is_valid():
                 form.save()
@@ -34,13 +48,6 @@ def index(request):
                 messages.error(request, 'Invalid information provided')
                 return HttpResponseRedirect('/')
 
-    has_friends = bool(friends)
-
-    context = {
-        'contacts': friends,
-        'has_friends': has_friends,
-        'form': form,
-    }
     return render(request, 'contacts/index.html', context)
 
 
@@ -65,8 +72,9 @@ def update(request, id):
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect('/')
+                messages.success(request, 'Updated the discord profile!')
             else:
-                messages.error(request, 'Unable to update discord profile')
+                messages.error(request, 'Failed to update discord profile')
                 return HttpResponseRedirect('/')
 
     context = {
@@ -77,6 +85,6 @@ def update(request, id):
 
 
 @login_required
-def backup(request):
+def data_download(request):
     extract_postgresql()
     return render(request, 'contacts/backup.html', context={})

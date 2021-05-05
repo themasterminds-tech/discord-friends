@@ -1,11 +1,10 @@
 import os
 from django.conf import settings
 
-root_dir = os.getcwd()
-
-""" Those using the postgresql database system """
+project_root = os.getcwd()[:-8]
 
 
+# Configuration for the postgresql database
 def extract_postgresql():
     import psycopg2
 
@@ -30,7 +29,7 @@ def extract_postgresql():
         result_query)
 
     # Output file path
-    output_file_location = f'{root_dir}\\downloads\\discord_friends.txt'
+    output_file_location = f'{project_root}\\downloads\\discord_friends.txt'
 
-    with open(output_file_location, 'w') as output:
+    with open(output_file_location, 'w', encoding='utf-8') as output:
         db_cursor.copy_expert(file_output_query, output)

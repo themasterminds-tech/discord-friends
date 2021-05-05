@@ -115,7 +115,8 @@
                                 yet</h4>
                         </div>
                     </div>
-                    <small class="fixed-bottom text-white-50">Copyright © 2020 - LokotamaTheMastermind</small>
+                    <small class="fixed-bottom text-white-50">Copyright © 2020-<span id="currentyear"></span> -
+                        LokotamaTheMastermind</small>
                     {% endif %}
                 </div>
             </div>
@@ -157,9 +158,113 @@
 {% endif %}
 
 {% else %}
+{% for message in messages %}
+<div class="alert bg-light text-dark alert-dismissible fade show" role="alert">
+    <i class="fa fa-info-circle"></i>&nbsp;{{ message }}
+    <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
 <div class="container text-white-50" style="margin-top: 20%;">
+
     <h3 class="text-center">Not logged in</h3>
-    <p class="text-center h5">Try to logon through this <a href="/admin/" class="font-weight-bold">link</a></p>
+    <p class="text-center"><button class="btn btn-outline-light mt-1" data-target="#authentication-modal"
+            data-toggle="modal">Authenticate</button></p>
+</div>
+
+<div class="modal fade" id="authentication-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-secondary">
+            <div class="modal-body">
+                <ul class="nav nav-tabs w-100">
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark" href="#register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#login">Login</a>
+                    </li>
+                </ul>
+                <br>
+
+                <div class="tab-content">
+                    <div id="register" class="container tab-pane active">
+                        <h4 class="text-white text-center"><i class="fa fa-plus-circle"></i> Register</h4>
+                        <form action="{% url 'register' %}" method="POST" class="was-validated">
+                            {% csrf_token %}
+                            <div class="form-inline mt-2">
+                                <label class="mr-5 text-white"><small>{{ form_register.username.label }}</small></label>
+                                <br>
+                                {{ form_register.username }} <a data-toggle="tooltip" data-placement="right"
+                                    title="{{ form_register.username.help_text }}"><i
+                                        class="fa fa-info-circle ml-3 text-light"></i></a>
+                                <div class="valid-feedback">Hope it met up to the requirements</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+                            <div class="mb-4"></div>
+                            <div class="form-inline mt-2">
+                                <label class="mr-5 text-white"><small>{{ form_register.email.label }}</small></label>
+                                {{ form_register.email }} <a data-toggle="tooltip" data-placement="right"
+                                    title="{{ form_register.email.help_text }}"><i
+                                        class="fa fa-info-circle ml-3 text-light"></i></a>
+                                <div class="valid-feedback">Hope it met up to the requirements</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+                            <div class="mb-4"></div>
+                            <div class="form-inline mt-2">
+                                <label
+                                    class="mr-5 text-white"><small>{{ form_register.password1.label }}</small></label>
+                                <br>
+                                {{ form_register.password1 }} <a data-toggle="tooltip" data-placement="right"
+                                    title="{{ form_register.password1.help_text }}"><i
+                                        class="fa fa-info-circle ml-3 text-light"></i></a>
+                                <div class="valid-feedback">Hope it met up to the requirements</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+                            <div class="mb-4"></div>
+                            <div class="form-inline mt-2">
+                                <label
+                                    class="mr-5 text-white"><small>{{ form_register.password2.label }}</small></label>
+                                <br>
+                                {{ form_register.password2 }} <a data-toggle="tooltip" data-placement="right"
+                                    title="{{ form_register.password2.help_text }}"><i
+                                        class="fa fa-info-circle ml-3 text-light"></i></a>
+                                <div class="valid-feedback">Hope you entered the same password!</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+
+                            <button class="btn btn-outline-light w-100 mt-3" type="submit">Register <i
+                                    class="fa fa-plus-circle"></i></button>
+                        </form>
+                    </div>
+                    <div id="login" class="container tab-pane fade">
+                        <h4 class="text-white text-center"><i class="fa fa-arrow-alt-circle-right"></i> Login</h4>
+                        <form action="{% url 'login' %}" method="POST" class="was-validated">
+                            {% csrf_token %}
+                            <div class="form-group mt-3">
+                                <label class="mr-3 text-white"><small>Username</small></label>
+                                <input type="text" name="username" placeholder="Enter username" class="form-control"
+                                    required>
+                                <div class="valid-feedback">Thanks for the information!</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="mr-3 text-white"><small>Password</small></label>
+                                <input type="password" name="pwd" placeholder="Enter password" class="form-control"
+                                    required>
+                                <div class="valid-feedback">Thanks for the information!</div>
+                                <div class="invalid-feedback">Please fill in!</div>
+                            </div>
+
+                            <button class="btn btn-outline-light w-100 mt-3" type="submit">Login <i
+                                    class="fa fa-sign-in-alt"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endif %}
 
