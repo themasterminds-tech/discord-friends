@@ -17,13 +17,13 @@
             <div class="col-6">
                 <div style="margin-top: 20%;">
                     <h2 class="text-center text-white">Add Discord Friends</h2>
-                    <hr class="w-75 border-white">
+                    <hr class="w-50 border-white">
                     <div></div>
                     {% if messages %}
                     {% for message in messages %}
-                    <div class="alert bg-danger text-white alert-dismissible fade show" role="alert">
+                    <div class="alert bg-light alert-dismissible fade show" role="alert">
                         {{ message }}
-                        <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -48,11 +48,19 @@
                         <button class="btn btn-outline-light w-100 mt-3" type="submit">Submit <i
                                 class="far fa-paper-plane"></i></button>
                     </form>
-                    <a href="{% url 'logout' %}" class="text-white-50 mt-5"><i class="fas fa-long-arrow-alt-left"></i>
-                        Logout</a>
-                    <span><a href="{% url 'friends:backup' %}"
-                            class="btn btn-outline-success btn-sm float-right mt-2"><i class="fas fa-download"></i>
-                            Download</a></span>
+                    <span>
+                        <a href="{% url 'logout' %}" class="btn btn-light btn-sm mt-2"><i
+                                class="fas fa-arrow-alt-circle-left"></i>
+                            Logout</a>
+                        <button class="btn btn-info btn-sm float-right mt-2"><i class="fa fa-info-circle"></i>
+                            Help</button>
+                        <button class="btn btn-success btn-sm float-right mt-2 mr-2" data-toggle="modal"
+                            data-target="#upload-modal"><i class="fas fa-upload"></i>
+                            Upload</a></button>
+                        <a href="{% url 'friends:download' %}" class="btn btn-primary btn-sm float-right mt-2 mr-2"><i
+                                class="fas fa-download"></i>
+                            Download</a>
+                    </span>
                 </div>
             </div>
             <div class="col-6">
@@ -62,14 +70,14 @@
                         <img class="card-img-top" src="{% static 'shared/img/wumpus-happy.png' %}" alt="Happ Wumpus">
                         <div class="card-img-overlay">
                             <h3 class="text-center">Available Friends</h3>
-                            <hr class="w-75 border-light">
+                            <hr class="w-25 border-light">
 
                             <div class="container">
                                 {% for friend in contacts %}
                                 <div class="mb-2" id="data-row-${i}">
                                     {{ friend.username }}#{{ friend.tag }}
                                     <span class="float-right">
-                                        <button type="button" class="btn btn-outline-primary btn-sm float-right"
+                                        <button type="button" class="btn btn-outline-success btn-sm float-right"
                                             data-toggle="modal" data-target="#friend-modal-{{ friend.id }}"><i
                                                 class="fa fa-expand"></i>
                                             Expand</button>
@@ -127,6 +135,7 @@
 {% if has_friends %}
 <!-- MODALS -->
 {% for friend in contacts %}
+<!-- FRIEND MODAL -->
 <div class="modal fade" id="friend-modal-{{ friend.id }}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-secondary">
@@ -143,9 +152,9 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-sm" data-toggle="modal"
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                     data-target="#friend-update-modal-{{ friend.id }}"><i class="fa fa-edit"></i>
-                    Expand</button>
+                    Update</button>
                 <a href="{% url 'friends:delete' friend.id %}" class="btn btn-danger btn-sm"
                     onclick="confirm('Are you sure you want to permanently delete your saved discord friend?');"><i
                         class="fa fa-trash"></i> Delete</a>
@@ -154,6 +163,7 @@
     </div>
 </div>
 
+<!-- FRIEND UPDATE MODAL -->
 <div class="modal fade" id="friend-update-modal-{{ friend.id }}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-secondary">
@@ -171,11 +181,6 @@
                                 <div></div>
                                 <form action="{% url 'friends:update' friend.id %}" method="post">
                                     {% csrf_token %}
-                                    <div class="form-inline mt-3">
-                                        <label for="id_user_id" class="mr-5 text-white">{{ form.user_id.label }}</label>
-                                        {{ form.user_id }}
-                                    </div>
-                                    <div class="mb-4"></div>
                                     <div class="form-inline mt-3">
                                         <label for="id_username"
                                             class="mr-3 text-white">{{ form.username.label }}</label>
@@ -214,6 +219,7 @@
 {% endfor %}
 {% endif %}
 
+<!-- SETTINGS MODAL -->
 <div class="modal fade" id="settings-modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-secondary">
@@ -229,11 +235,37 @@
     </div>
 </div>
 
+<!-- UPLOAD MODAL -->
+<div class="modal fade" id="upload-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-secondary">
+            <div class="modal-body">
+                <h1 class="h1 text-center text-white">Upload files</h1>
+                <hr class="w-25 border-light">
+
+                <form action="{% url 'friends:upload' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ upload_form.upload }}
+                            <label for="upload" class="custom-file-label">{{ upload_form.upload.label }}</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-2"><i class="fa fa-cloud-upload-alt"></i>
+                        Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 {% else %}
+<!-- MESSAGES -->
 {% for message in messages %}
 <div class="alert bg-light text-dark alert-dismissible fade show" role="alert">
     <i class="fa fa-info-circle"></i>&nbsp;{{ message }}
-    <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -246,6 +278,7 @@
             data-toggle="modal">Authenticate</button></p>
 </div>
 
+<!-- AUTHENTICATION MODAL -->
 <div class="modal fade" id="authentication-modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-secondary">
@@ -338,6 +371,7 @@
         </div>
     </div>
 </div>
+
 {% endif %}
 
 {% endblock content %}

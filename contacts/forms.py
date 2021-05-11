@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Friends
 from django.core import validators
+from django.core.validators import FileExtensionValidator
 
 
 class FriendForm(forms.ModelForm):
@@ -31,3 +32,11 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2']
+
+
+class UploadForm(forms.Form):
+    upload = forms.FileField(widget=forms.FileInput(
+        attrs={'name': 'uploadbutton', 'id': 'uploadbutton', 'class': 'custom-file-input', 'multiple': False}), label='Select File', validators=[FileExtensionValidator(allowed_extensions=[
+            'txt',
+            'csv'
+        ])])
