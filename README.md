@@ -1,8 +1,11 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/lokotamathemastermind-portfolio/discord-friends)&nbsp;&nbsp;![GitHub repo size](https://img.shields.io/github/repo-size/lokotamathemastermind-portfolio/discord-friends)&nbsp;&nbsp;![GitHub](https://img.shields.io/github/license/lokotamathemastermind-portfolio/discord-friends)&nbsp;&nbsp;![Twitter Follow](https://img.shields.io/twitter/follow/LokotamaThe?style=social)
-
 <div><img align="right" width=100 height=100 src="screenshots/discord.ico"></div>
 
 # Discord Friends
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/lokotamathemastermind-portfolio/discord-friends)
+![GitHub repo size](https://img.shields.io/github/repo-size/lokotamathemastermind-portfolio/discord-friends)
+![GitHub](https://img.shields.io/github/license/themasterminds-tech/discord-friends)
+![Twitter Follow](https://img.shields.io/twitter/follow/LokotamaThe?style=social)
 
 <br>
 

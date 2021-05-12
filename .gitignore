@@ -4,3 +4,4 @@ migrations/
 node_modules/
 downloads/discord_friends.txt
 *.tmp
+*.env
