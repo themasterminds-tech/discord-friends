@@ -66,11 +66,11 @@ def index(request):
 # DELETE view
 @login_required(login_url='/')
 def delete(request, id):
-    if request.method == "POST":
+    if request.method == "GET":
         friend = Friends.objects.get(id=id)
         friend.delete()
         return HttpResponseRedirect('/')
-    elif request.method == "GET":
+    elif request.method == "POST":
         messages.error(request, "That url doesn't support GET requests")
         return HttpResponseRedirect('/')
 
