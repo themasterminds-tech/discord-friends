@@ -1,0 +1,30 @@
+name: environment
+on:
+  push:
+    branches: [ master ]
+    paths: '.env.prod'
+
+jobs:
+  docit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Copy the environment variables
+      run: |
+        find ./ -type f -name ".env.prod" | while read fname; do
+          dirname=`dirname "$fname"`
+          foldername=`basename "$dirname"`
+          filename=`basename "$fname"`
+          newname=`echo "$dirname" | sed -e "s/ /_/g"`
+          cp "${dirname}/$filename" ".env"
+        done
+    - name: Commit files
+      run: |
+        git config --local user.email "57059138+LokotamaTheMastermind@users.noreply.github.com"
+        git config --local user.name "LokotamaTheMastermind"
+        git commit -m "Renamed the .env file" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
