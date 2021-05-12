@@ -3,3 +3,4 @@ migrations/
 *.code-workspace
 node_modules/
 downloads/discord_friends.txt
+*.tmp

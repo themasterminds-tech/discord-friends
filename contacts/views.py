@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Friends
 from .forms import FriendForm, RegisterForm, UploadForm
@@ -8,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .databases import extract_postgresql
 import csv
 from django.conf import settings
+import os
 
 
 # INDEX view
@@ -104,6 +106,7 @@ def download(request):
     return render(request, 'contacts/download.html', context={})
 
 
+# UPLOAD view
 @login_required(login_url='/')
 def upload(request):
     if request.method == "POST":
@@ -111,36 +114,50 @@ def upload(request):
         upload_form = UploadForm(request.POST or None, request.FILES or None)
 
         if upload_form.is_valid():
+
+            # File gotten from request
             file = request.FILES.get('upload')
+
+            # Decoded file content
             blob = file.read().decode()
 
-            with open(f"{settings.BASE_DIR}/temp/uploadedfilecache.tmp", mode='w', encoding='utf-8') as csv_file:
-                csv_file.writelines(blob)
-            reader = csv.reader(blob, delimiter=',', dialect='excel')
+            tmp_file_exists = os.path.exists(
+                f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp')
 
-            for row in reader:
-                print(row)
+            # Check if the temporary file exists
+            if not tmp_file_exists:
+                open(f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp', mode='x')
 
-            # line_count = 0
+            # Write data to the file
+            with open(f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp', mode='w', encoding='utf-8') as csv_file:
+                csv_file.write(blob)
 
-            # for row in reader:
-            #     if line_count == 0:
-            #         print('File headers are '.join(row))
-            #     line_count += 1
+            # Read the file and create data based on the values
+            with open(f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp', mode='r', encoding='utf-8') as csv_file:
+                reader = csv.DictReader(
+                    csv_file, delimiter=',', dialect='excel')
 
-            # site_based_csv = 'id,user_id,username,tag,account_id'
+                for row in reader:
+                    username = row.get('username')
+                    user_id = row.get('user_id')
+                    tag = row.get('tag')
 
-            # if headers == site_based_csv:
-            #     print('Correct csv file')
-            # else:
-            #     messages.error(
-            #         request, "CSV format of file isn't supported by the project")
-            #     return HttpResponseRedirect('/')
+                    if username is not None and user_id is not None and tag is not None:
+                        Friends.objects.filter(account=request.user).get_or_create(
+                            username=username, user_id=user_id, tag=tag, account_id=request.user.id)
+                        messages.success(
+                            request, 'Successfully import data from file!')
+                        return HttpResponseRedirect('/')
+                    else:
+                        messages.error(
+                            request, "Sorry the file you uploaded isn't a legit csv file or is corrupted!")
+                        return HttpResponseRedirect('/')
 
         else:
             messages.error(
                 request, "Sorry I don't support reading of other files apart from csv and txt files!")
             return HttpResponseRedirect('/')
+
     elif request.method == "GET":
-        messages.error(request, "That error doesn't support GET requests!")
+        messages.error(request, "That url doesn't support GET requests!")
         return HttpResponseRedirect('/')

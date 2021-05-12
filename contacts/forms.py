@@ -36,7 +36,7 @@ class RegisterForm(UserCreationForm):
 
 class UploadForm(forms.Form):
     upload = forms.FileField(widget=forms.FileInput(
-        attrs={'name': 'uploadbutton', 'id': 'uploadbutton', 'class': 'custom-file-input', 'multiple': False}), label='Select File', validators=[FileExtensionValidator(allowed_extensions=[
+        attrs={'name': 'uploadbutton', 'id': 'uploadbutton', 'class': 'custom-file-input', 'multiple': False, 'required': True}), label='Select File', validators=[FileExtensionValidator(allowed_extensions=[
             'txt',
             'csv'
         ])])
