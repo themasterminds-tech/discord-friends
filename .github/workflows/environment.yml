@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: Copy the environment variables
       run: |
         find ./ -type f -name ".env.prod" | while read fname; do
