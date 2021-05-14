@@ -1,3 +1,5 @@
+# Project settings
+
 from pathlib import Path
 import os
 from decouple import config

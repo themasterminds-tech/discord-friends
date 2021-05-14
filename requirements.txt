@@ -3,5 +3,5 @@ requests
 psycopg2
 pylint
 djangosslserver
-django_pwa
-python_decouple
+django-pwa
+python-decouple

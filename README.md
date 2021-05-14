@@ -1,4 +1,4 @@
-<div><img align="right" width=100 height=100 src="screenshots/discord.ico"></div>
+<div><img align="center" width=100 height=100 src="screenshots/discord.ico"></div>
 
 # Discord Friends
 
@@ -11,45 +11,55 @@
 
 ## Description
 
-___
 Backup discord friends incase of account loss
 
 ## Requirements
 
-___
+They are listed in the `environment.yml` and `requirements.txt` file in the root folder
 
-1. `Python` >=3.5 or `Anaconda`
-2. A discord account with (`developer options`)
-3. PostgreSQL installed with database set up already (optional - for best peformance)
-4. [`mkcert`](https://github.com/FiloSottile/mkcert) toolkit (for creating certificates for `https`)
+### External tools
 
-<br>
+1. mkcert
 
-## Installation / Usage
+## Installation
 
-___
+## Anaconda Environment
 
-## Anaconda
+### Normal server
 
-1. Clone this repository with command `git clone https://github.com/LokotamaTheMastermind/discord-friends.git`
-2. Enter the folder with anaconda enabled and in `base` virtual environment
-3. Change the directory to `scripts/{op}`, where `{op}` is your operating system. Then after run the file starting with the prefix only `install`
-4. Wait for project server to startup
-5. Then open browser in url `https://localhost:100`
+1. Clone this repository with command `git clone https://github.com/themasterminds-tech/discord-friends.git`
+2. Install the dependencies in the `environment.yml` file
+3. Run the command `python manage.py runserver:{PORT}` where `{PORT}` is the port where the server runs on. This will start the non-ssl server!
+4. Enjoy backing up your friends from discord!
 
 ## PIP
 
 1. Clone this repository with command `git clone https://github.com/LokotamaTheMastermind/discord-friends.git`
-2. Activate your virtualenv if you have any
-3. Change directory to `scripts/{op}` where `{op}` is your operating system. Then run the file starting with the prefix only `install_pip` in cmd
-4. Wait for the project server to startup
-5. Then open browser in url `https://localhost:100`
+2. Install the dependencies in the `requirements.txt` file
+3. Run the command `python manage.py runserver:{PORT}` where `{PORT}` is the port where the server runs on. This will start the non-ssl server!
+4. Enjoy backing up your friends from discord!
 
-<br>
+### SSL server
 
-**Important Notice** - I suggest you read further for information about configuring the project
+Instead of running `python manage.py runserver:{PORT}` command. Run this command `python manage.py runsslserver --cert discordfriends.development.pem --key discordfriends.development.pem {PORT}`
 
-<br>
+### Accessing from other machines
+
+1. Edit the `discord_friends/settings.py` to reflect the following changes
+
+```python
+ALLOWED_HOSTS = [
+    'localhost'
+    '127.0.0.1'
+    'your_ip_address'
+]
+```
+
+Replace `your_ip_address` with the IP address of host computer on your current network.
+2. After this change is done run the following command `python manage.py runserver 0.0.0.0:{PORT}`
+3. Try accessing `{HOST_IP_ADDRESS}:{PORT}` on the other device if everything is done currently then the page will load up
+
+**Note:** this can be combined with the `python manage.py runsslserver` command to run secure connections of the server to other devices. To combine it run the following command `python manage.py runsslserver --key discordfriends.development.pem --cert discordfriends.development.pem 0.0.0.0:{PORT}` where the port is the where the server will run
 
 ## Configuration
 
