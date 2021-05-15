@@ -1,8 +1,6 @@
 <div align=center><img align="right" width=100 height=100 src="screenshots/discord.ico"></span></div>
 
-# Discord Friends
-
-## Authors
+# Author - Discord Friends
 
 ___
 
