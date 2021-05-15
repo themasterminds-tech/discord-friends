@@ -1,4 +1,3 @@
-from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Friends
 from .forms import FriendForm, RegisterForm, UploadForm
@@ -14,6 +13,13 @@ import os
 
 # INDEX view
 def index(request):
+
+    # Deletes the cache file from the upload view if any
+    uploadedfilecache = os.path.exists(
+        f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp')
+
+    if uploadedfilecache:
+        os.remove(f'{settings.BASE_DIR}/temp/uploadedfilecache.tmp')
 
     # Create register form
     register_form = RegisterForm()
@@ -143,7 +149,7 @@ def upload(request):
                     tag = row.get('tag')
 
                     if username is not None and user_id is not None and tag is not None:
-                        Friends.objects.filter(account=request.user).get_or_create(
+                        Friends.objects.get_or_create(
                             username=username, user_id=user_id, tag=tag, account_id=request.user.id)
                         messages.success(
                             request, 'Successfully import data from file!')

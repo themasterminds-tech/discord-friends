@@ -1,1 +1,0 @@
-cd ../../ && python3 manage.py runsslserver --key discordfriends.pem --cert discordfriends.pem 100

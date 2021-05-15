@@ -19,7 +19,7 @@ def extract_postgresql():
     DB_PORT = settings.DATABASES['default']['PORT']
 
     # Query for everything in `contacts_friends` table
-    result_query = "SELECT * FROM contacts_friends"
+    result_query = "SELECT user_id, username, tag FROM contacts_friends"
 
     # Connection to database
     conn = psycopg2.connect(host=DB_HOST, database=DB_NAME,

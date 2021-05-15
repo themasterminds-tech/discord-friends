@@ -1,7 +1,7 @@
-django
-requests
-psycopg2
-pylint
-djangosslserver
-django-pwa
-python-decouple
+django==3.1.2
+requests==2.25.1
+psycopg2==2.8.6
+pylint==2.6.0
+djangosslserver==0.22
+django-pwa==1.0.10
+python-decouple==3.4

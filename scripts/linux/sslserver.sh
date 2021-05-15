@@ -1,0 +1,1 @@
+cd ../../ && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runsslserver --key discordfriends.development.pem --cert discordfriends.development.pem
