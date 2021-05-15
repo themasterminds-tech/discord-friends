@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<!-- HOMEPAGE - Main -->
 {% if request.user.is_authenticated %}
 <section class="alert alert-success fixed-top">
     <p class="lead text-center mt-0 mb-0">Successfully logged in as {{ request.user.username }} <span><button
@@ -11,6 +10,7 @@
     </p>
 </section>
 
+<!-- Main section -->
 <section>
     <div class="container">
         <div class="row">
@@ -20,6 +20,7 @@
                     <hr class="w-50 border-white">
                     <div></div>
                     {% if messages %}
+                    <!-- Messages -->
                     {% for message in messages %}
                     <div class="alert bg-light alert-dismissible fade show" role="alert">
                         {{ message }}
@@ -258,9 +259,9 @@
         </div>
     </div>
 </div>
-</div>
 
 {% else %}
+{% if messages %}
 <!-- MESSAGES -->
 {% for message in messages %}
 <div class="alert bg-light text-dark alert-dismissible fade show" role="alert">
@@ -270,6 +271,7 @@
     </button>
 </div>
 {% endfor %}
+{% endif %}
 
 <div class="container text-white-50" style="margin-top: 20%;">
 
