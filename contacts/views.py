@@ -9,9 +9,13 @@ from .databases import extract_postgresql
 import csv
 from django.conf import settings
 import os
-
+import requests
+from requests.exceptions import ConnectionError
+from django.http import FileResponse
 
 # INDEX view
+
+
 def index(request):
 
     # Deletes the cache file from the upload view if any
@@ -58,12 +62,51 @@ def index(request):
             username = request.POST.get('username')
             tag = request.POST.get('tag')
 
+            if user_id != "" and username == "" and tag == "":
+                try:
+                    requests.get('https://example.com')
+                except ConnectionError:
+                    messages.error(
+                        request, 'Not connection to the internet!')
+                    return HttpResponseRedirect('/')
+
+                url = f"https://discord.com/api/v9/users/{user_id}"
+
+                payload = {}
+                headers = {
+                    'Authorization': 'Bot {}'.format(settings.DISCORD_BOT_ID),
+                }
+
+                response = requests.request(
+                    "GET", url, headers=headers, data=payload)
+
+                if response.status_code != 200:
+                    messages.error(
+                        request, 'Awful connection to Discord')
+                    return HttpResponseRedirect('/')
+
+                json = response.json()
+
+                username = json['username']
+                tag = json['discriminator']
+
+                contact = Friends.objects.create(
+                    user_id=user_id, username=username, tag=tag, account=request.user.id)
+                contact.save()
+
+                messages.success(
+                    request, 'Created discord profile')
+                return HttpResponseRedirect('/')
+
+            elif user_id == "":
+                messages.error(
+                    request, 'That User ID field can\'t be empty')
+                return HttpResponseRedirect('/')
+
             contact = Friends.objects.create(
                 user_id=user_id, username=username, tag=tag, account=request.user)
 
             contact.save()
-
-            messages.success(request, 'Successfully created discord profile!')
             return HttpResponseRedirect('/')
 
     return render(request, 'contacts/index.html', context)
@@ -77,7 +120,7 @@ def delete(request, id):
         friend.delete()
         return HttpResponseRedirect('/')
     elif request.method == "POST":
-        messages.error(request, "That url doesn't support GET requests")
+        messages.error(request, "Doesn't accept GET request")
         return HttpResponseRedirect('/')
 
 
@@ -97,11 +140,11 @@ def update(request, id):
 
             friend.save()
 
-            messages.success(request, 'Successfully updated discord profile!')
+            messages.success(request, 'Updated discord profile!')
             return HttpResponseRedirect('/')
 
         elif request.method == "GET":
-            messages.error(request, "That url doesn't support GET requests!")
+            messages.error(request, "Doesn't accept GET request")
             return HttpResponseRedirect('/')
 
 

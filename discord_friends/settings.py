@@ -192,3 +192,5 @@ PWA_APP_SPLASH_SCREEN = [
 
 PWA_APP_DIR = config('PWA_APP_DIR', cast=str)
 PWA_APP_LANG = config('PWA_APP_LANG', cast=str)
+
+DISCORD_BOT_ID = config('DISCORD_BOT_ID', cast=str)
