@@ -1,2 +1,0 @@
-@REM Install mkcert by default and regenerate the expired certificates
-cd ../../tools && mkcert.exe -install && mkcert localhost 127.0.0.1 --cert-file discordfriends.development.pme --key-file discordfriends.development.pem
