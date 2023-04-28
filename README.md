@@ -1,5 +1,7 @@
 <div><img align="center" width=100 height=100 src="screenshots/discord.ico"></div>
 
+**PS: this repository is no longer being maintained, it's suggested to migrate to <https://github.com/OyewoleOyedeji/prodis> instead**
+
 # Discord Friends
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/lokotamathemastermind-portfolio/discord-friends)
